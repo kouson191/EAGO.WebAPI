@@ -15,7 +15,8 @@ using Newtonsoft.Json;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
-    public class OrderController : ApiController
+
+    public class OrderController : BaseApiController
     {
         private EAGO.BLL.Orders orders = new Orders();
         private string logClass = "Order API：";
@@ -27,6 +28,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         public OrderController()
         { 
             Log = new Log.Txt.TxtLog();
+             
         } 
 
 
@@ -89,7 +91,7 @@ namespace EAGO.WebApi.EAGO_Controllers
             }
             finally
             {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj)); 
+                JsonpCallback(JsonConvert.SerializeObject(returnObj));   
             }
         }
 

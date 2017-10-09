@@ -8,13 +8,16 @@ using System.Web.Hosting;
 
 namespace EAGO.WebApi.Common
 {
-    public class CacheHelper
-    {
-        /// <summary>  
-        /// 获取当前应用程序指定CacheKey的Cache值  
-        /// </summary>  
-        /// <param name="CacheKey">  
-        /// <returns></returns>y  
+    /// <summary>
+    /// 缓存帮助类
+    /// </summary>
+    public abstract  class CacheHelper
+    { 
+       /// <summary>
+        /// 获取当前应用程序指定CacheKey的Cache值
+       /// </summary>
+       /// <param name="CacheKey"></param>
+       /// <returns></returns>
         public static object GetCache(string CacheKey)
         {
             System.Web.Caching.Cache objCache = HttpRuntime.Cache;
@@ -24,8 +27,8 @@ namespace EAGO.WebApi.Common
         /// <summary>  
         /// 设置当前应用程序指定CacheKey的Cache值  
         /// </summary>  
-        /// <param name="CacheKey">  
-        /// <param name="objObject">  
+        /// <param name="CacheKey"> </param> 
+        /// <param name="objObject"> </param> 
         public static void SetCache(string CacheKey, object objObject)
         {
             System.Web.Caching.Cache objCache = HttpRuntime.Cache;
@@ -36,8 +39,8 @@ namespace EAGO.WebApi.Common
         /// <summary>  
         /// 设置当前应用程序指定CacheKey的Cache值  
         /// </summary>  
-        /// <param name="CacheKey">  
-        /// <param name="objObject">  
+        /// <param name="CacheKey">  </param> 
+        /// <param name="objObject"></param>   
         public static void SetCache(string CacheKey, object objObject, DateTime absoluteExpiration, TimeSpan slidingExpiration)
         {
             System.Web.Caching.Cache objCache = HttpRuntime.Cache;
@@ -66,7 +69,7 @@ namespace EAGO.WebApi.Common
         /// <summary>  
         /// 清除单一键缓存  
         /// </summary>  
-        /// <param name="key">  
+        /// <param name="CacheKey"> </param>  
         public static void RemoveKeyCache(string CacheKey)
         {
             try

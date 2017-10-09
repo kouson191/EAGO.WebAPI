@@ -13,7 +13,7 @@ using System.Web;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
-    public class DropDrownListController : ApiController
+    public class DropDrownListController : BaseApiController
     {
         //
         // GET: /DropDrownList/ 

@@ -15,7 +15,10 @@ using Newtonsoft.Json;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
-    public class PaymentDetailsController : ApiController
+    /// <summary>
+    /// 付款明细
+    /// </summary>
+    public class PaymentDetailsController : BaseApiController
     {
 
         private EAGO.BLL.PaymentDetails payment = new EAGO.BLL.PaymentDetails();
@@ -23,7 +26,9 @@ namespace EAGO.WebApi.EAGO_Controllers
         private EAGO.WebApi.Log.Log Log;
         private static IList<PaymentDetail> likp = new List<PaymentDetail> { };
 
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public PaymentDetailsController()
         { 
             Log = new Log.Txt.TxtLog();

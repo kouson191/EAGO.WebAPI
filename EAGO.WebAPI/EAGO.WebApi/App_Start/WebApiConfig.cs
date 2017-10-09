@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using EAGO.WebApi.Common;
 using System.Net.Http.Headers;
+using System.Web.Http.Cors;
 
 namespace EAGO.WebApi
 {
@@ -11,6 +12,9 @@ namespace EAGO.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            //跨域配置
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",
             //    routeTemplate: "api/{controller}/{id}",

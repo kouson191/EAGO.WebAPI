@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
-    public class ApplysController : ApiController
+    public class ApplysController : BaseApiController
     {
 
         private EAGO.BLL.Applys applys = new EAGO.BLL.Applys();
@@ -66,7 +66,6 @@ namespace EAGO.WebApi.EAGO_Controllers
             finally
             {
                 JsonpCallback(JsonConvert.SerializeObject(returnObj));
-
             }
         }
 

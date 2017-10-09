@@ -4,6 +4,17 @@
         <name>EAGO.WebApi</name>
     </assembly>
     <members>
+        <member name="T:EAGO.WebApi.RouteConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            
+            </summary>
+            <param name="routes"></param>
+        </member>
         <member name="T:EAGO.WebApi.XDomainRequestDelegatingHandler">
             <summary>
             Gives the WebAPI the ability to handle XDomainRequest objects with embedded JSON data.
@@ -486,15 +497,43 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <!-- 对于成员“M:EAGO.WebApi.Common.CacheHelper.GetCache(System.String)”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:EAGO.WebApi.Common.CacheHelper.SetCache(System.String,System.Object)”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:EAGO.WebApi.Common.CacheHelper.SetCache(System.String,System.Object,System.DateTime,System.TimeSpan)”忽略有格式错误的 XML 注释 -->
+        <member name="T:EAGO.WebApi.Common.CacheHelper">
+            <summary>
+            缓存帮助类
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.Common.CacheHelper.GetCache(System.String)">
+            <summary>
+            获取当前应用程序指定CacheKey的Cache值
+            </summary>
+            <param name="CacheKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EAGO.WebApi.Common.CacheHelper.SetCache(System.String,System.Object)">
+            <summary>  
+            设置当前应用程序指定CacheKey的Cache值  
+            </summary>  
+            <param name="CacheKey"> </param> 
+            <param name="objObject"> </param> 
+        </member>
+        <member name="M:EAGO.WebApi.Common.CacheHelper.SetCache(System.String,System.Object,System.DateTime,System.TimeSpan)">
+            <summary>  
+            设置当前应用程序指定CacheKey的Cache值  
+            </summary>  
+            <param name="CacheKey">  </param> 
+            <param name="objObject"></param>   
+        </member>
         <member name="M:EAGO.WebApi.Common.CacheHelper.SetCache(System.String,System.Object,System.Int32)">
             <summary>    
             设置数据缓存    
             </summary>   
         </member>
-        <!-- 对于成员“M:EAGO.WebApi.Common.CacheHelper.RemoveKeyCache(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:EAGO.WebApi.Common.CacheHelper.RemoveKeyCache(System.String)">
+            <summary>  
+            清除单一键缓存  
+            </summary>  
+            <param name="CacheKey"> </param>  
+        </member>
         <member name="M:EAGO.WebApi.Common.CacheHelper.RemoveAllCache">
             <summary>  
             清除所有缓存  
@@ -505,6 +544,35 @@
             以列表形式返回已存在的所有缓存   
             </summary>  
             <returns></returns>   
+        </member>
+        <member name="T:EAGO.WebApi.Common.DataTableToList">
+            <summary>
+            DataTable转List
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.Common.DataTableToList.ConvertTo``1(System.Data.DataTable)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="table"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EAGO.WebApi.Common.DataTableToList.ConvertTo``1(System.Collections.Generic.IList{System.Data.DataRow})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="rows"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EAGO.WebApi.Common.DataTableToList.CreateItem``1(System.Data.DataRow)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="row"></param>
+            <returns></returns>
         </member>
         <member name="P:EAGO.WebApi.Common.Error.IsError">
             <summary>
@@ -531,6 +599,18 @@
             错误编码
             </summary>
         </member>
+        <member name="M:EAGO.WebApi.Common.RandomString.GetRandomString(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            生成随机字符串 
+            </summary>
+            <param name="length">目标字符串的长度</param>
+            <param name="useNum">是否包含数字，1=包含，默认为包含</param>
+            <param name="useLow">是否包含小写字母，1=包含，默认为包含</param>
+            <param name="useUpp">是否包含大写字母，1=包含，默认为包含</param>
+            <param name="useSpe">是否包含特殊字符，1=包含，默认为不包含</param>
+            <param name="custom">要包含的自定义字符，直接输入要包含的字符列表</param>
+            <returns>指定长度的随机字符串</returns>
+        </member>
         <member name="P:EAGO.WebApi.Common.ReturnBaseObject`1.IsError">
             <summary>
             是否操作错误
@@ -544,6 +624,11 @@
         <member name="P:EAGO.WebApi.Common.ReturnBaseObject`1.ExtendObject">
             <summary>
             扩展对像
+            </summary>
+        </member>
+        <member name="T:EAGO.WebApi.EAGO_Controllers.BaseApiController">
+            <summary>
+            基础ApiController
             </summary>
         </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.ApplysController.GetAllApplys(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
@@ -598,6 +683,16 @@
             </summary>
             <param name="IVBELN">订单号</param>
         </member>
+        <member name="T:EAGO.WebApi.EAGO_Controllers.PaymentDetailsController">
+            <summary>
+            付款明细
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.PaymentDetailsController.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.PaymentDetailsController.GetAllPayment(System.String,System.String,System.String)">
             <summary>
             付款明细
@@ -605,6 +700,45 @@
             <param name="ZKUNNR">客户编号</param>
             <param name="IBEGIN">开始日期</param>
             <param name="IEND">结束日期</param>
+        </member>
+        <member name="T:EAGO.WebApi.Common.RequestAuthorizeAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.Common.RequestAuthorizeAttribute.HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            自定义返回信息
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:EAGO.WebApi.EAGO_Controllers.UserController">
+            <summary>
+            用户API
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.Login(System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="strUser"></param>
+            <param name="strPwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.CheckUser(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strticket"></param>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.ValidateUser(System.String,System.String)">
+            
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.JsonpCallback(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="M:EAGO.WebApi.Log.Log.WriteLog(System.String,System.Boolean)">
             <summary>
