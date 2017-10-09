@@ -1,0 +1,8 @@
+2017-09-28 08:11:46->Order API：Destination configuration already initialized
+
+2017-09-28 09:25:33->Applys API：未将对象引用设置到对象的实例。
+
+2017-09-28 09:26:48->Applys API：未将对象引用设置到对象的实例。
+
+2017-09-28 16:09:56->Order API：Destination configuration already initialized
+

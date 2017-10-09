@@ -1,0 +1,88 @@
+2017-10-06 08:53:44->Order API：
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.4.82:3300' not reached
+TIME        Fri Oct 06 08:53:44 2017
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3286
+DETAIL      NiPConnect2: 192.168.4.82:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     1
+
+
+2017-10-06 08:54:08->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:10:42->PaymentDetails API：值不能为 null。
+参数名: key
+
+2017-10-06 09:10:51->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:23:13->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:23:13->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:25:00->Order API：
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.4.82:3300' not reached
+TIME        Fri Oct 06 09:25:00 2017
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3286
+DETAIL      NiPConnect2: 192.168.4.82:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     1
+
+
+2017-10-06 09:25:00->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:25:00->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:25:04->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:26:00->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:26:23->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:27:14->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:27:55->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:28:57->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:29:17->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:31:41->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:42:09->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:48:45->Order API：值不能为 null。
+参数名: key
+
+2017-10-06 09:49:01->Order API：值不能为 null。
+参数名: key
+

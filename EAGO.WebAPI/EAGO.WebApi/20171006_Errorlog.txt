@@ -1,0 +1,30 @@
+2017-10-06 09:39:12->Order API：
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.4.82:3300' not reached
+TIME        Fri Oct 06 09:38:47 2017
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3286
+DETAIL      NiPConnect2: 192.168.4.82:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     1
+
+
+2017-10-06 15:07:01->Order API：
+ERROR       Group eccprd not found
+TIME        Fri Oct 06 15:07:00 2017
+RELEASE     720
+COMPONENT   LG
+VERSION     5
+RC          -6
+MODULE      lgxx.c
+LINE        4577
+DETAIL      LgIGroupX
+COUNTER     1
+
+

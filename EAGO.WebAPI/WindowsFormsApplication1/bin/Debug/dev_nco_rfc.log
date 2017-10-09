@@ -1,0 +1,19 @@
+**** Trace file opened at 2017-09-11 09:59:06+08:00 (中国标准时间)
+	SAP .NET Connector: 3, 0, 1, 0, Working directory: E:\正式项目\EAGO.WebApi\WindowsFormsApplication1\bin\Debug, Program: E:\正式项目\EAGO.WebApi\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.vshost.exe
+	Hardware: PC with Windows NT, Processor: 2x Intel 80686 (Mod 94 Step 3), Operating system: Microsoft Windows NT 6.1.7601 Service Pack 1, .NET CLR version: 2.0.50727.8669
+ 	SAP release: 720, Kernel release: 720, Kernel patch level: 78
+	Hostname: IT118, IP address: 192.168.12.3, IP_v6 address: 
+
+	Default trace level: None
+
+>> Error entry 2017-09-11 09:59:06.188
+SAP.Middleware.Connector.RfcAbapRuntimeException: Error LOAD_TYPE_VERSION_MISMATCH occured. P1=ABAP-generation exit error
+   在 SAP.Middleware.Connector.RfcConnection.ThrowRfcErrorMsg()
+   在 SAP.Middleware.Connector.RfcConnection.ReadBytes(Byte* buffer, Int32 count)
+   在 SAP.Middleware.Connector.RfcConnection.ReadRfcIDBegin(Int32& length)
+   在 SAP.Middleware.Connector.RfcConnection.ReadUpTo(RFCGET readState, RfcFunction function, RFCID toRid)
+   在 SAP.Middleware.Connector.RfcConnection.RfcReceive(RfcFunction function)
+   在 SAP.Middleware.Connector.RfcFunction.RfcDeserialize(RfcConnection conn, IRfcIOStream stream)
+   在 SAP.Middleware.Connector.RfcFunction.RfcCallReceive(RfcConnection conn, IRfcIOStream stream, RFCID rid)
+   在 SAP.Middleware.Connector.RfcFunction.RfcCallReceive(RfcConnection conn)
+   在 SAP.Middleware.Connector.RfcFunction.Invoke(RfcDestination destination)

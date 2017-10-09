@@ -1,0 +1,165 @@
+USE [EAGO_ORDER]
+GO
+
+/****** Object:  Table [dbo].[tbl_dropdown_list]    Script Date: 09/06/2017 11:59:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tbl_dropdown_list](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[value] [varchar](50) NULL,
+	[text] [varchar](100) NULL,
+	[type] [varchar](50) NULL,
+ CONSTRAINT [PK_tbl_dropdown_list] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [EAGO_ORDER]
+GO
+
+/****** Object:  Table [dbo].[tbl_likp]    Script Date: 09/06/2017 11:59:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tbl_likp](
+	[GUID] [varchar](50) NOT NULL,
+	[ZZVBELN] [varchar](50) NULL,
+	[VBELN] [varchar](10) NULL,
+	[ZVBELN] [varchar](10) NULL,
+	[ZERDAT] [datetime] NULL,
+	[LFART] [varchar](10) NULL,
+	[VSTEL] [varchar](10) NULL,
+	[VKORG] [varchar](10) NULL,
+	[WADAT] [datetime] NULL,
+	[KUNNR] [varchar](10) NULL,
+	[TOTAL] [decimal](18, 2) NULL,
+	[ZZCHHAO] [varchar](50) NULL,
+	[SQR] [varchar](50) NULL,
+	[SENDFLAG] [varchar](2) NULL,
+	[SENDDATE] [datetime] NULL,
+	[SHFLAG] [varchar](2) NULL,
+	[SHDATE] [datetime] NULL,
+	[ADDRESS] [varchar](200) NULL,
+	[REMARK] [varchar](200) NULL,
+	[Id] [int] NOT NULL,
+ CONSTRAINT [PK_tbl_likp] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'交货申请单号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'ZZVBELN'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'销售单号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'VBELN'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'交货单号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'ZVBELN'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'申请时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'ZERDAT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'交货类型' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'LFART'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'装运地点' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'VSTEL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'销售机构' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'VKORG'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'请求交货日期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'WADAT'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'车号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'ZZCHHAO'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发送标志' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_likp', @level2type=N'COLUMN',@level2name=N'SENDFLAG'
+GO
+
+
+USE [EAGO_ORDER]
+GO
+
+/****** Object:  Table [dbo].[tbl_lips]    Script Date: 09/06/2017 11:59:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tbl_lips](
+	[GUID] [varchar](50) NOT NULL,
+	[FGUID] [varchar](50) NOT NULL,
+	[ZZVBELN] [varchar](50) NULL,
+	[POSNR] [int] NULL,
+	[MATNR] [varchar](10) NULL,
+	[MAKTX] [varchar](200) NULL,
+	[MEINS] [varchar](10) NULL,
+	[NEED] [decimal](18, 0) NULL,
+	[CONFIRM_NUM] [decimal](18, 0) NULL,
+	[LFIMG] [decimal](18, 0) NULL,
+	[PRICE] [decimal](18, 2) NULL,
+	[MONEY] [decimal](18, 2) NULL,
+ CONSTRAINT [PK_tbl_lips] PRIMARY KEY CLUSTERED 
+(
+	[GUID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'FGUID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'交货申请单号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'ZZVBELN'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'物料描述' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'MAKTX'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'基本单位' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'MEINS'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'需求数量' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'NEED'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'确认数量' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'CONFIRM_NUM'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'交货数量' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'tbl_lips', @level2type=N'COLUMN',@level2name=N'LFIMG'
+GO
+
+
