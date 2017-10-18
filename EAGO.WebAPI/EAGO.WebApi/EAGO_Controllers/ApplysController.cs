@@ -14,7 +14,11 @@ using Newtonsoft.Json.Linq;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
-    public class ApplysController : BaseApiController
+    /// <summary>
+    /// 交货申请
+    /// </summary>
+    [RequestAuthorize] //票据验证特征
+    public class ApplysController : ApiController
     {
 
         private EAGO.BLL.Applys applys = new EAGO.BLL.Applys();
@@ -42,7 +46,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// <param name="LFART">交货类型</param>
         /// <param name="ZVBELN">交货单号</param>
         [HttpGet]
-        public void GetAllApplys(string KUNNR, string ZZVBELN, string VBELN, string BEGDATE, string ENDDATE, string SENDFLAG, string LFART, string ZVBELN)
+        public ReturnBaseObject<IEnumerable<LIKP>> GetAllApplys(string KUNNR, string ZZVBELN, string VBELN, string BEGDATE, string ENDDATE, string SENDFLAG, string LFART, string ZVBELN)
         {
             ReturnBaseObject<IEnumerable<LIKP>> returnObj = new ReturnBaseObject<IEnumerable<LIKP>>() { ReturnObject = new List<LIKP>() };
             try
@@ -62,11 +66,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorMsg = ex.Message.ToString();
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 // return returnObj;
-            }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
-            }
+            } 
+
+            return returnObj;
         }
 
 
@@ -75,7 +77,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="ZZVBELN">交货申请单号</param>
         [HttpGet]
-        public void GetApplysDtl(string ZZVBELN)
+        public ReturnBaseObject<IEnumerable<LIPS>> GetApplysDtl(string ZZVBELN)
         {
             ReturnBaseObject<IEnumerable<LIPS>> returnObj = new ReturnBaseObject<IEnumerable<LIPS>>() { ReturnObject = new List<LIPS>() };
             try
@@ -93,11 +95,8 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorMsg = ex.Message.ToString();
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误; 
             }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
 
-            }
+            return returnObj;
         }
 
 
@@ -106,7 +105,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="slikp">交货申请Jason对象</param>
         [HttpPost]
-        public void PostApplys(dynamic slikp)
+        public ReturnBaseObject<EAGO.Models.LIKP> PostApplys(dynamic slikp)
         {
             EAGO.Models.LIKP likp = new EAGO.Models.LIKP();
             likp.LIPS = new List<LIPS>();
@@ -150,11 +149,8 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorMsg = ex.Message.ToString();
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
 
-            }
+            return returnObj;
 
         }
 
@@ -163,7 +159,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="ZZVBELN">交货申请单号</param>
         [HttpGet]
-        public void SendSAP(string ZZVBELN)
+        public ReturnBaseObject<string> SendSAP(string ZZVBELN)
         {
             ReturnBaseObject<string> returnObj = new ReturnBaseObject<string>() { ReturnObject = "" };
             try
@@ -180,24 +176,47 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorMsg = ex.Message.ToString();
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
 
+            return returnObj; 
+        }
+
+
+        /// <summary>
+        /// 删除交货申请
+        /// </summary>
+        /// <param name="ZZVBELN">交货申请单号</param>
+        [HttpGet]
+        public ReturnBaseObject<string> Delete(string ZZVBELN)
+        {
+            ReturnBaseObject<string> returnObj = new ReturnBaseObject<string>() { ReturnObject = "" };
+            try
+            {
+                string result = applys.delete(ZZVBELN);
+                returnObj.ReturnObject = result;
+                returnObj.IsError = false;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteLog(logClass + ex.Message.ToString() + "\r\n", true);
+                returnObj.IsError = true;
+
+                returnObj.Error.ErrorMsg = ex.Message.ToString();
+                returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
 
+            return returnObj;  
         } 
+         
 
+        //protected virtual void JsonpCallback(string json)
+        //{
+        //    HttpResponse Response = HttpContext.Current.Response;
+        //    string callback = HttpContext.Current.Request["callback"];
 
-        protected virtual void JsonpCallback(string json)
-        {
-            HttpResponse Response = HttpContext.Current.Response;
-            string callback = HttpContext.Current.Request["callback"];
-
-            //如果callback是空, 就是普通的json, 否则就是jsonp
-            Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
-            Response.End();
-        }
+        //    //如果callback是空, 就是普通的json, 否则就是jsonp
+        //    Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
+        //    Response.End();
+        //}
 
     }
 }

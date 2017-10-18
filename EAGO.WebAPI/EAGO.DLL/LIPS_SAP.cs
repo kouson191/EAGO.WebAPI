@@ -43,6 +43,7 @@ namespace EAGO.DLL
             ItemTable.Columns.Add(new DataColumn("PRICE", typeof(decimal)));
             ItemTable.Columns.Add(new DataColumn("MONEY", typeof(decimal)));
             ItemTable.Columns.Add(new DataColumn("APPLY_NUM", typeof(decimal)));
+            ItemTable.Columns.Add(new DataColumn("ORDER_NUM", typeof(decimal)));
 
              
 
@@ -63,15 +64,15 @@ namespace EAGO.DLL
                 newRow["MATNR"] = reTB1.GetString("MATNR").ToString();
                 newRow["MAKTX"] = reTB1.GetString("MAKTX").ToString();
                 newRow["MEINS"] = reTB1.GetString("MEINS").ToString();
-                newRow["NEED"] = reTB1.GetString("NEED").ToString();
-                newRow["CONFIRM_NUM"] = reTB1.GetString("CONFIRM_NUM").ToString();
-                newRow["LFIMG"] = reTB1.GetString("LFIMG").ToString();
-                newRow["PRICE"] = reTB1.GetString("PRICE").ToString();
-                newRow["MONEY"] = reTB1.GetString("MONEY").ToString();
+                //newRow["NEED"] = reTB1.GetString("NEED").ToString();
+                //newRow["CONFIRM_NUM"] = reTB1.GetString("CONFIRM_NUM").ToString();
 
-                ///获取已申请数量
-                ///
-                newRow["APPLY_NUM"] = lips.getApplyNum(IVBELN, newRow["MATNR"].ToString()).ToString();  
+                newRow["ORDER_NUM"] = reTB1.GetString("NEED").ToString(); //销售订单数量
+                newRow["APPLY_NUM"] = lips.getApplyNum(IVBELN, newRow["MATNR"].ToString()).ToString();    ///获取已申请数量 
+                newRow["LFIMG"] = reTB1.GetString("LFIMG").ToString(); //已发货数量
+
+                newRow["PRICE"] = reTB1.GetString("PRICE").ToString();
+                newRow["MONEY"] = reTB1.GetString("MONEY").ToString();  
 
                 ItemTable.Rows.Add(newRow);
             }

@@ -8,17 +8,8 @@ using System.Web;
 
 namespace EAGO.WebApi.Common
 {
-    /// <summary>
-    /// DataTable转List
-    /// </summary>
     public abstract class DataTableToList
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="table"></param>
-        /// <returns></returns>
         public static IList<T> ConvertTo<T>(DataTable table)
         {
             if (table == null)
@@ -36,12 +27,6 @@ namespace EAGO.WebApi.Common
             return ConvertTo<T>(rows);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="rows"></param>
-        /// <returns></returns>
         public static IList<T> ConvertTo<T>(IList<DataRow> rows)
         {
             IList<T> list = null;
@@ -60,12 +45,6 @@ namespace EAGO.WebApi.Common
             return list;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="row"></param>
-        /// <returns></returns>
         public static T CreateItem<T>(DataRow row)
         {
             T obj = default(T);

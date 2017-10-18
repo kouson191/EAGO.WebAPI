@@ -15,16 +15,3 @@ ERRNO TEXT  WSAETIMEDOUT: Connection timed out
 COUNTER     1
 
 
-2017-10-06 15:07:01->Order API：
-ERROR       Group eccprd not found
-TIME        Fri Oct 06 15:07:00 2017
-RELEASE     720
-COMPONENT   LG
-VERSION     5
-RC          -6
-MODULE      lgxx.c
-LINE        4577
-DETAIL      LgIGroupX
-COUNTER     1
-
-

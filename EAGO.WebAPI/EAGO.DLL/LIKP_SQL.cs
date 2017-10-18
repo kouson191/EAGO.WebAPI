@@ -12,6 +12,17 @@ namespace EAGO.DLL
 {
     public class LIKP_SQL
     {
+
+
+        public string delete(string ZZVBELN)
+        {
+             
+            string rslt = "0";
+            rslt = DbHelperSQL.ExecuteSql("Update tbl_likp set DELFLAG = '1',DELDATE = getdate() where ZZVBELN = '" + ZZVBELN + "' and DELFLAG  is null  ").ToString();
+
+            return rslt;
+        }
+
         /// <summary>
         /// 发送SAP
         /// </summary>
@@ -30,7 +41,7 @@ namespace EAGO.DLL
                 DataTable dt = DbHelperSQL.Query(sqlstr).Tables[0];
                 if (dt.Rows.Count > 0)
                 {
-                    likp = ConvertTo<EAGO.Models.LIKP>(dt);
+                    likp = ConvertTo(dt);
                 }
 
                 LIPS_SQL objlips = new LIPS_SQL();
@@ -66,7 +77,7 @@ namespace EAGO.DLL
             sqlstr = sqlstr + "      ,CONVERT(varchar(100),SHDATE, 23) SHDATE";
             sqlstr = sqlstr + "      ,ADDRESS ";
             sqlstr = sqlstr + "      ,REMARK ";
-            sqlstr = sqlstr + "  FROM  tbl_likp  where 1 = 1  ";
+            sqlstr = sqlstr + "  FROM  tbl_likp  where 1 = 1   and DELFLAG is null  ";
             return sqlstr;
 
         }
@@ -106,8 +117,8 @@ namespace EAGO.DLL
                 sqlstr = sqlstr + ",MAKTX";
                 sqlstr = sqlstr + ",MEINS";
                 sqlstr = sqlstr + ",NEED";
-                sqlstr = sqlstr + ",CONFIRM_NUM";
-                sqlstr = sqlstr + ",LFIMG";
+                //sqlstr = sqlstr + ",CONFIRM_NUM";
+                //sqlstr = sqlstr + ",LFIMG";
                 sqlstr = sqlstr + ",PRICE";
                 sqlstr = sqlstr + ",MONEY)";
 
@@ -120,8 +131,8 @@ namespace EAGO.DLL
                 sqlstr = sqlstr + "'" + lips.MAKTX + "',";
                 sqlstr = sqlstr + "'" + lips.MEINS + "',";
                 sqlstr = sqlstr + "'" + lips.NEED + "',";
-                sqlstr = sqlstr + "'" + lips.CONFIRM_NUM + "',";
-                sqlstr = sqlstr + "'" + lips.LFIMG + "',";
+                //sqlstr = sqlstr + "'" + lips.CONFIRM_NUM + "',";
+                //sqlstr = sqlstr + "'" + lips.LFIMG + "',";
                 sqlstr = sqlstr + "'" + lips.PRICE + "',";
                 sqlstr = sqlstr + "'" + lips.MONEY + "')";
 
@@ -209,8 +220,8 @@ namespace EAGO.DLL
                 sqlstr = sqlstr + ",MAKTX";
                 sqlstr = sqlstr + ",MEINS";
                 sqlstr = sqlstr + ",NEED";
-                sqlstr = sqlstr + ",CONFIRM_NUM";
-                sqlstr = sqlstr + ",LFIMG";
+                //sqlstr = sqlstr + ",CONFIRM_NUM";
+                //sqlstr = sqlstr + ",LFIMG";
                 sqlstr = sqlstr + ",PRICE";
                 sqlstr = sqlstr + ",MONEY)";
 
@@ -223,8 +234,8 @@ namespace EAGO.DLL
                 sqlstr = sqlstr + "'" + lips.MAKTX + "',";
                 sqlstr = sqlstr + "'" + lips.MEINS + "',";
                 sqlstr = sqlstr + "'" + lips.NEED + "',";
-                sqlstr = sqlstr + "'" + lips.CONFIRM_NUM + "',";
-                sqlstr = sqlstr + "'" + lips.LFIMG + "',";
+                //sqlstr = sqlstr + "'" + lips.CONFIRM_NUM + "',";
+                //sqlstr = sqlstr + "'" + lips.LFIMG + "',";
                 sqlstr = sqlstr + "'" + lips.PRICE + "',";
                 sqlstr = sqlstr + "'" + lips.MONEY + "')";
                 sqllist.Add(sqlstr);
@@ -294,34 +305,120 @@ namespace EAGO.DLL
                 sqlstr = sqlstr + " and ZVBELN = '" + ZVBELN + "' ";
             }
 
-            sqlstr = sqlstr + " Order by  WADAT Desc ";
+            sqlstr = sqlstr + " Order by  WADAT Desc, ZZVBELN desc";
 
             DataTable dt = DbHelperSQL.Query(sqlstr).Tables[0];
 
             if (dt.Rows.Count > 0)
             {
-                rslt = ConvertTo<LIKP>(dt);
+                //rslt = ConvertTo<LIKP>(dt);
+
+                rslt = TableToList<LIKP>(dt,true);
+
             }
 
             return rslt;
         }
 
-        public static List<T> ConvertTo<T>(DataTable table)
+
+        public static List<EAGO.Models.LIKP> ConvertTo(DataTable table)
         {
-            if (table == null)
-            {
-                return null;
+            List<LIKP> likps = new List<LIKP>();
+
+            if (table != null)
+            { 
+                foreach (DataRow row in table.Rows)
+                {
+                    EAGO.Models.LIKP likp = new EAGO.Models.LIKP();
+                    //likp.GUID = row["GUID"].ToString();
+                    likp.ZZVBELN = row["ZZVBELN"].ToString();
+                    likp.VBELN = row["VBELN"].ToString();
+                    likp.ZVBELN = row["ZVBELN"].ToString();
+                    likp.ZERDAT = row["ZERDAT"].ToString();
+                    likp.LFART = row["LFART"].ToString();
+                    likp.VSTEL = row["VSTEL"].ToString();
+                    likp.VKORG = row["VKORG"].ToString();
+                    likp.WADAT = row["WADAT"].ToString();
+                    //likp.KUNNR = row["KUNNR"].ToString();
+                    likp.TOTAL = decimal.Parse( row["TOTAL"].ToString());
+                    likp.ZZCHHAO = row["ZZCHHAO"].ToString();
+                    likp.SQR = row["SQR"].ToString();
+                    likp.SENDFLAG = row["SENDFLAG"].ToString();
+                    likp.SENDDATE = row["SENDDATE"].ToString();
+                    //likp.SHFLAG = row["SHFLAG"].ToString();
+                    //likp.SHDATE = row["SHDATE"].ToString();
+                    likp.ADDRESS = row["ADDRESS"].ToString();
+                    likp.REMARK = row["REMARK"].ToString();
+                    likps.Add(likp);
+                }
+            
             }
 
-            List<DataRow> rows = new List<DataRow>();
-
-            foreach (DataRow row in table.Rows)
-            {
-                rows.Add(row);
-            }
-
-            return ConvertTo<T>(rows);
+            return likps;
         }
+
+
+
+        //public static List<T> ConvertTo<T>(DataTable table)
+        //{
+        //    if (table == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    List<DataRow> rows = new List<DataRow>();
+
+        //    foreach (DataRow row in table.Rows)
+        //    {
+        //        rows.Add(row);
+        //    }
+
+        //    return ConvertTo<T>(rows);
+        //}
+
+
+
+        /// <summary>  
+        /// DataTable转化为List集合  
+        /// </summary>  
+        /// <typeparam name="T">实体对象</typeparam>  
+        /// <param name="dt">datatable表</param>  
+        /// <param name="isStoreDB">是否存入数据库datetime字段，date字段没事，取出不用判断</param>  
+        /// <returns>返回list集合</returns>  
+        public static List<T> TableToList<T>(DataTable dt, bool isStoreDB = true)
+        {
+            List<T> list = new List<T>();
+            Type type = typeof(T);
+            List<string> listColums = new List<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                PropertyInfo[] pArray = type.GetProperties(); //集合属性数组  
+                T entity = Activator.CreateInstance<T>(); //新建对象实例  
+                foreach (PropertyInfo p in pArray)
+                {
+                    if (!dt.Columns.Contains(p.Name) || row[p.Name] == null || row[p.Name] == DBNull.Value)
+                    {
+                        continue;  //DataTable列中不存在集合属性或者字段内容为空则，跳出循环，进行下个循环  
+                    }
+                    if (isStoreDB && p.PropertyType == typeof(DateTime) && Convert.ToDateTime(row[p.Name]) < Convert.ToDateTime("1753-01-01"))
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        var obj = Convert.ChangeType(row[p.Name], p.PropertyType);//类型强转，将table字段类型转为集合字段类型  
+                        p.SetValue(entity, obj, null);
+                    }
+                    catch (Exception)
+                    {
+                        // throw;  
+                    }  
+                }
+                list.Add(entity);
+            }
+            return list;
+        }  
+
 
         public static List<T> ConvertTo<T>(List<DataRow> rows)
         {

@@ -23,14 +23,10 @@ namespace EAGO.DBUtility
 
                 parms.Add(RfcConfigParameters.AppServerHost, AppServerHost);   //SAP主机IP 
                 parms.Add(RfcConfigParameters.SystemNumber, "00");  //SAP实例
-
-                //parms.Add(RfcConfigParameters.MessageServerHost, AppServerHost); //SAP主机IP
-                //parms.Add(RfcConfigParameters.MessageServerService, "3601");
-
-                parms.Add(RfcConfigParameters.LogonGroup, "eccprd");  
                 parms.Add(RfcConfigParameters.User, User);  //用户名 
-                parms.Add(RfcConfigParameters.Password, Password);  //密码 
+                parms.Add(RfcConfigParameters.Password, Password);  //密码 r
                 parms.Add(RfcConfigParameters.Client, Client);  // Client
+                parms.Add(RfcConfigParameters.LogonGroup, "eccprd");  //  RfcConfigParameters.Logongroup 
 
                 parms.Add(RfcConfigParameters.Language, "ZH");  //登陆语言
                 parms.Add(RfcConfigParameters.PoolSize, "5");

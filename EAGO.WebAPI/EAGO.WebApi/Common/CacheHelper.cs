@@ -11,13 +11,13 @@ namespace EAGO.WebApi.Common
     /// <summary>
     /// 缓存帮助类
     /// </summary>
-    public abstract  class CacheHelper
-    { 
-       /// <summary>
+    public abstract class CacheHelper
+    {
+        /// <summary>
         /// 获取当前应用程序指定CacheKey的Cache值
-       /// </summary>
-       /// <param name="CacheKey"></param>
-       /// <returns></returns>
+        /// </summary>
+        /// <param name="CacheKey"></param>
+        /// <returns></returns>
         public static object GetCache(string CacheKey)
         {
             System.Web.Caching.Cache objCache = HttpRuntime.Cache;

@@ -15,6 +15,8 @@ namespace EAGO.DLL
     public class LIKP_SAP
     {
 
+
+
         public string sendSAP(List<EAGO.Models.LIKP> likp, List<EAGO.Models.LIPS> lips)
         {
             try
@@ -78,7 +80,7 @@ namespace EAGO.DLL
                     rowG.SetValue("MAKTX", item.MAKTX == null ? "" : item.MAKTX);  //物料描述
                     rowG.SetValue("MEINS", item.MEINS == null ? "" : item.MEINS);  //销售单位
                     rowG.SetValue("NEED", item.NEED);  //需求数量
-                    rowG.SetValue("CONFIRM_NUM", item.CONFIRM_NUM);  //确认数量
+                    //rowG.SetValue("CONFIRM_NUM", item.CONFIRM_NUM);  //确认数量
                     rowG.SetValue("LFIMG", item.LFIMG);  //交货数量
                     rowG.SetValue("PRICE", item.PRICE);  //单价
                     rowG.SetValue("MONEY", item.MONEY);  //金额   

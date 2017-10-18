@@ -65,5 +65,12 @@ namespace EAGO.Models
         /// </summary>
         public decimal APPLY_NUM { get; set; }
 
+
+
+        /// <summary>
+        /// 销售订单数量
+        /// </summary>
+        public decimal ORDER_NUM { get; set; }
+
     }
 }

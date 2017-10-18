@@ -18,7 +18,8 @@ namespace EAGO.WebApi.EAGO_Controllers
     /// <summary>
     /// 付款明细
     /// </summary>
-    public class PaymentDetailsController : BaseApiController
+    [RequestAuthorize] //票据验证特征
+    public class PaymentDetailsController : ApiController
     {
 
         private EAGO.BLL.PaymentDetails payment = new EAGO.BLL.PaymentDetails();
@@ -26,9 +27,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         private EAGO.WebApi.Log.Log Log;
         private static IList<PaymentDetail> likp = new List<PaymentDetail> { };
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
+
         public PaymentDetailsController()
         { 
             Log = new Log.Txt.TxtLog();
@@ -42,7 +41,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// <param name="IBEGIN">开始日期</param>
         /// <param name="IEND">结束日期</param>
         [HttpGet]
-        public void GetAllPayment(string ZKUNNR, string IBEGIN, string IEND) //ReturnBaseObject<IEnumerable<PaymentDetail>>
+        public ReturnBaseObject<IEnumerable<PaymentDetail>> GetAllPayment(string ZKUNNR, string IBEGIN, string IEND) //ReturnBaseObject<IEnumerable<PaymentDetail>>
         {
             ReturnBaseObject<IEnumerable<PaymentDetail>> returnObj = new ReturnBaseObject<IEnumerable<PaymentDetail>>() { ReturnObject = new List<PaymentDetail>() };
             try
@@ -64,22 +63,18 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 //return returnObj;
             }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
-
-            }
+            return returnObj;
         }
 
-        protected virtual void JsonpCallback(string json)
-        {
-            HttpResponse Response = HttpContext.Current.Response;
-            string callback = HttpContext.Current.Request["callback"];
+        //protected virtual void JsonpCallback(string json)
+        //{
+        //    HttpResponse Response = HttpContext.Current.Response;
+        //    string callback = HttpContext.Current.Request["callback"];
 
-            //如果callback是空, 就是普通的json, 否则就是jsonp
-            Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
-            Response.End();
-        }
+        //    //如果callback是空, 就是普通的json, 否则就是jsonp
+        //    Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
+        //    Response.End();
+        //}
 
     }
 }

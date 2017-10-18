@@ -1,4 +1,4 @@
-﻿using EAGO.DBUtility;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using EAGO.Models;
+using EAGO.DBUtility;
 
 namespace EAGO.DLL
 {
@@ -40,10 +41,10 @@ namespace EAGO.DLL
         public decimal getApplyNum(string VBELN, string MATNR)
         {
             decimal rslt = 0;
-            string sqlstr = @" SELECT ISNULL( SUM(tbl_lips.CONFIRM_NUM) ,0)
+            string sqlstr = @" SELECT ISNULL( SUM( case when  tbl_lips.CONFIRM_NUM = 0 then  tbl_lips.NEED else tbl_lips.CONFIRM_NUM end   ) ,0)
                               FROM  tbl_likp  inner join tbl_lips on 
                               tbl_likp.ZZVBELN = tbl_lips.ZZVBELN 
-                              WHERE tbl_likp.VBELN = '" + VBELN + "' AND tbl_lips.MATNR = '" + MATNR + @"'  ";
+                              WHERE tbl_likp.VBELN = '" + VBELN + "' AND tbl_lips.MATNR = '" + MATNR + @"'  AND tbl_likp.DELFLAG IS  NULL ";
             DataTable dt = DbHelperSQL.Query(sqlstr).Tables[0];
             if (dt.Rows.Count > 0)
             {

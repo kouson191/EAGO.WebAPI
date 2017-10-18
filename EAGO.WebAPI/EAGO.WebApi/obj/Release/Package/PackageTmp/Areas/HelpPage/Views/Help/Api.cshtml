@@ -1,10 +1,6 @@
 @using System.Web.Http
 @using EAGO.WebApi.Areas.HelpPage.Models
 @model HelpPageApiModel
-@section Scripts {
-    @Html.DisplayForModel("TestClientDialogs")
-    @Html.DisplayForModel("TestClientReferences")
-}
 
 @{
     var description = Model.ApiDescription;
@@ -24,3 +20,9 @@
         @Html.DisplayForModel()
     </section>
 </div>
+
+@Html.DisplayForModel("TestClientDialogs")
+@section Scripts{
+    <link href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+    @Html.DisplayForModel("TestClientReferences")
+}

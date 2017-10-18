@@ -12,8 +12,8 @@ using System.Web;
 
 
 namespace EAGO.WebApi.EAGO_Controllers
-{
-    public class DropDrownListController : BaseApiController
+{ 
+    public class DropDrownListController : ApiController
     {
         //
         // GET: /DropDrownList/ 
@@ -35,7 +35,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="type">类型</param>
         [HttpGet]
-        public void GetList(string type)
+        public ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>> GetList(string type)
         {
             ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>> returnObj = new ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>>() { ReturnObject = new List<EAGO.Models.DropDrownList>() };
             try
@@ -55,21 +55,17 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 // return returnObj;
             }
-            finally
-            {
-                JsonpCallback(JsonConvert.SerializeObject(returnObj));
-
-            }
+            return returnObj;
         }
 
-        protected virtual void JsonpCallback(string json)
-        {
-            HttpResponse Response = HttpContext.Current.Response;
-            string callback = HttpContext.Current.Request["callback"];
+        //protected virtual void JsonpCallback(string json)
+        //{
+        //    HttpResponse Response = HttpContext.Current.Response;
+        //    string callback = HttpContext.Current.Request["callback"];
 
-            //如果callback是空, 就是普通的json, 否则就是jsonp
-            Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
-            Response.End();
-        }
+        //    //如果callback是空, 就是普通的json, 否则就是jsonp
+        //    Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
+        //    Response.End();
+        //}
     }
 }

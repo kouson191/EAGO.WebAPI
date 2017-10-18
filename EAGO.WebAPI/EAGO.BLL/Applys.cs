@@ -59,6 +59,13 @@ namespace EAGO.BLL
             return LIPS.getlips(fguid);
         }
 
+        //<summary>
+        //删除申请
+        //</summary>
+        public string delete(string fguid)
+        {
+            return LIKP.delete(fguid);
+        }
         #endregion  Method
     }
 }

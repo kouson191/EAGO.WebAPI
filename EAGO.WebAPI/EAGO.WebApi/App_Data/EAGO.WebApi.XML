@@ -4,17 +4,6 @@
         <name>EAGO.WebApi</name>
     </assembly>
     <members>
-        <member name="T:EAGO.WebApi.RouteConfig">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:EAGO.WebApi.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
-            <summary>
-            
-            </summary>
-            <param name="routes"></param>
-        </member>
         <member name="T:EAGO.WebApi.XDomainRequestDelegatingHandler">
             <summary>
             Gives the WebAPI the ability to handle XDomainRequest objects with embedded JSON data.
@@ -545,35 +534,6 @@
             </summary>  
             <returns></returns>   
         </member>
-        <member name="T:EAGO.WebApi.Common.DataTableToList">
-            <summary>
-            DataTable转List
-            </summary>
-        </member>
-        <member name="M:EAGO.WebApi.Common.DataTableToList.ConvertTo``1(System.Data.DataTable)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="table"></param>
-            <returns></returns>
-        </member>
-        <member name="M:EAGO.WebApi.Common.DataTableToList.ConvertTo``1(System.Collections.Generic.IList{System.Data.DataRow})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="rows"></param>
-            <returns></returns>
-        </member>
-        <member name="M:EAGO.WebApi.Common.DataTableToList.CreateItem``1(System.Data.DataRow)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="row"></param>
-            <returns></returns>
-        </member>
         <member name="P:EAGO.WebApi.Common.Error.IsError">
             <summary>
             是否错误
@@ -599,17 +559,16 @@
             错误编码
             </summary>
         </member>
-        <member name="M:EAGO.WebApi.Common.RandomString.GetRandomString(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String)">
+        <member name="T:EAGO.WebApi.Common.RequestAuthorizeAttribute">
             <summary>
-            生成随机字符串 
+            自定义此特性用于接口的身份验证
             </summary>
-            <param name="length">目标字符串的长度</param>
-            <param name="useNum">是否包含数字，1=包含，默认为包含</param>
-            <param name="useLow">是否包含小写字母，1=包含，默认为包含</param>
-            <param name="useUpp">是否包含大写字母，1=包含，默认为包含</param>
-            <param name="useSpe">是否包含特殊字符，1=包含，默认为不包含</param>
-            <param name="custom">要包含的自定义字符，直接输入要包含的字符列表</param>
-            <returns>指定长度的随机字符串</returns>
+        </member>
+        <member name="M:EAGO.WebApi.Common.RequestAuthorizeAttribute.OnAuthorization(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            重写基类的验证方式，加入我们自定义的Ticket验证
+            </summary>
+            <param name="actionContext"></param>
         </member>
         <member name="P:EAGO.WebApi.Common.ReturnBaseObject`1.IsError">
             <summary>
@@ -626,9 +585,9 @@
             扩展对像
             </summary>
         </member>
-        <member name="T:EAGO.WebApi.EAGO_Controllers.BaseApiController">
+        <member name="T:EAGO.WebApi.EAGO_Controllers.ApplysController">
             <summary>
-            基础ApiController
+            交货申请
             </summary>
         </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.ApplysController.GetAllApplys(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
@@ -662,11 +621,27 @@
             </summary>
             <param name="ZZVBELN">交货申请单号</param>
         </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.ApplysController.Delete(System.String)">
+            <summary>
+            删除交货申请
+            </summary>
+            <param name="ZZVBELN">交货申请单号</param>
+        </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.DropDrownListController.GetList(System.String)">
             <summary>
             获取选项列表
             </summary>
             <param name="type">类型</param>
+        </member>
+        <member name="T:EAGO.WebApi.EAGO_Controllers.OrderController">
+            <summary>
+            销售订单
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.OrderController.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.OrderController.GetAllOrderHead(System.String,System.String,System.String,System.String)">
             <summary>
@@ -688,11 +663,6 @@
             付款明细
             </summary>
         </member>
-        <member name="M:EAGO.WebApi.EAGO_Controllers.PaymentDetailsController.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.PaymentDetailsController.GetAllPayment(System.String,System.String,System.String)">
             <summary>
             付款明细
@@ -701,44 +671,18 @@
             <param name="IBEGIN">开始日期</param>
             <param name="IEND">结束日期</param>
         </member>
-        <member name="T:EAGO.WebApi.Common.RequestAuthorizeAttribute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:EAGO.WebApi.Common.RequestAuthorizeAttribute.HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext)">
-            <summary>
-            自定义返回信息
-            </summary>
-            <param name="filterContext"></param>
-        </member>
         <member name="T:EAGO.WebApi.EAGO_Controllers.UserController">
             <summary>
-            用户API
+            用户
             </summary>
         </member>
-        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.Login(System.String)">
+        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.Login(System.String,System.String)">
             <summary>
             用户登录
             </summary>
             <param name="strUser"></param>
             <param name="strPwd"></param>
             <returns></returns>
-        </member>
-        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.CheckUser(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="strticket"></param>
-        </member>
-        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.ValidateUser(System.String,System.String)">
-            
-        </member>
-        <member name="M:EAGO.WebApi.EAGO_Controllers.UserController.JsonpCallback(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="json"></param>
         </member>
         <member name="M:EAGO.WebApi.Log.Log.WriteLog(System.String,System.Boolean)">
             <summary>
