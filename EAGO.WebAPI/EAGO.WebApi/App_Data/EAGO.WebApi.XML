@@ -627,6 +627,16 @@
             </summary>
             <param name="ZZVBELN">交货申请单号</param>
         </member>
+        <member name="T:EAGO.WebApi.EAGO_Controllers.DropDrownListController">
+            <summary>
+            获取选项列表
+            </summary>
+        </member>
+        <member name="M:EAGO.WebApi.EAGO_Controllers.DropDrownListController.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
         <member name="M:EAGO.WebApi.EAGO_Controllers.DropDrownListController.GetList(System.String)">
             <summary>
             获取选项列表

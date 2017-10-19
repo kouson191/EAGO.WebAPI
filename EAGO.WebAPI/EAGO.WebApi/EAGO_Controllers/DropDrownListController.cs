@@ -9,10 +9,14 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
 using System.Web;
+using System.Net.Http;
 
 
 namespace EAGO.WebApi.EAGO_Controllers
 { 
+    /// <summary>
+    /// 获取选项列表
+    /// </summary>
     public class DropDrownListController : ApiController
     {
         //
@@ -24,7 +28,9 @@ namespace EAGO.WebApi.EAGO_Controllers
 
         private static IList<EAGO.Models.DropDrownList> valuelist = new List<EAGO.Models.DropDrownList> { };
 
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public DropDrownListController()
         { 
             Log = new Log.Txt.TxtLog();
@@ -35,7 +41,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="type">类型</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>> GetList(string type)
+        public HttpResponseMessage GetList(string type)
         {
             ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>> returnObj = new ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>>() { ReturnObject = new List<EAGO.Models.DropDrownList>() };
             try
@@ -55,7 +61,10 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 // return returnObj;
             }
-            return returnObj;
+
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<EAGO.Models.DropDrownList>>>(returnObj);
+            HttpResponseMessage resultmsg = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return resultmsg;
         }
 
         //protected virtual void JsonpCallback(string json)

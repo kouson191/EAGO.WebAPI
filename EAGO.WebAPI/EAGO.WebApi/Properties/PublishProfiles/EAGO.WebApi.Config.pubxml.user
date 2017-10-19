@@ -94,19 +94,19 @@
       <publishTime>10/10/2017 14:33:57</publishTime>
     </File>
     <File Include="bin/EAGO.BLL.dll">
-      <publishTime>10/18/2017 16:09:27</publishTime>
+      <publishTime>10/19/2017 17:37:35</publishTime>
     </File>
     <File Include="bin/EAGO.DBUtility.dll">
-      <publishTime>10/18/2017 16:09:02</publishTime>
+      <publishTime>10/19/2017 17:37:06</publishTime>
     </File>
     <File Include="bin/EAGO.DLL.dll">
-      <publishTime>10/18/2017 16:09:04</publishTime>
+      <publishTime>10/19/2017 17:43:35</publishTime>
     </File>
     <File Include="bin/EAGO.Models.dll">
-      <publishTime>10/18/2017 16:09:09</publishTime>
+      <publishTime>10/19/2017 17:37:30</publishTime>
     </File>
     <File Include="bin/EAGO.WebApi.dll">
-      <publishTime>10/18/2017 16:18:03</publishTime>
+      <publishTime>10/19/2017 17:44:45</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/10/2017 14:33:57</publishTime>
@@ -147,6 +147,9 @@
     <File Include="bin/ja/System.Spatial.resources.dll">
       <publishTime>10/10/2017 14:33:57</publishTime>
     </File>
+    <File Include="bin/Jil.dll">
+      <publishTime>10/19/2017 15:41:24</publishTime>
+    </File>
     <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
       <publishTime>10/10/2017 14:33:57</publishTime>
     </File>
@@ -185,6 +188,9 @@
     </File>
     <File Include="bin/sapnco_utils.dll">
       <publishTime>10/10/2017 14:33:58</publishTime>
+    </File>
+    <File Include="bin/Sigil.dll">
+      <publishTime>10/19/2017 15:41:24</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>10/10/2017 16:01:21</publishTime>
@@ -520,7 +526,7 @@
       <publishTime>10/10/2017 14:33:57</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/10/2017 16:02:01</publishTime>
+      <publishTime>10/19/2017 15:41:31</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>10/10/2017 14:33:57</publishTime>
@@ -595,7 +601,7 @@
       <publishTime>10/10/2017 14:33:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/18/2017 16:18:03</publishTime>
+      <publishTime>10/19/2017 15:42:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

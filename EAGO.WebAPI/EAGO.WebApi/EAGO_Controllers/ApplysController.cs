@@ -11,13 +11,14 @@ using System;
 using System.Web;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
     /// <summary>
     /// 交货申请
     /// </summary>
-    [RequestAuthorize] //票据验证特征
+    //[RequestAuthorize] //票据验证特征
     public class ApplysController : ApiController
     {
 
@@ -46,7 +47,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// <param name="LFART">交货类型</param>
         /// <param name="ZVBELN">交货单号</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<LIKP>> GetAllApplys(string KUNNR, string ZZVBELN, string VBELN, string BEGDATE, string ENDDATE, string SENDFLAG, string LFART, string ZVBELN)
+        public HttpResponseMessage GetAllApplys(string KUNNR, string ZZVBELN, string VBELN, string BEGDATE, string ENDDATE, string SENDFLAG, string LFART, string ZVBELN)
         {
             ReturnBaseObject<IEnumerable<LIKP>> returnObj = new ReturnBaseObject<IEnumerable<LIKP>>() { ReturnObject = new List<LIKP>() };
             try
@@ -66,9 +67,11 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorMsg = ex.Message.ToString();
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 // return returnObj;
-            } 
+            }
 
-            return returnObj;
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<LIKP>>>(returnObj);
+            HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
         }
 
 
@@ -77,7 +80,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="ZZVBELN">交货申请单号</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<LIPS>> GetApplysDtl(string ZZVBELN)
+        public HttpResponseMessage  GetApplysDtl(string ZZVBELN)
         {
             ReturnBaseObject<IEnumerable<LIPS>> returnObj = new ReturnBaseObject<IEnumerable<LIPS>>() { ReturnObject = new List<LIPS>() };
             try
@@ -96,7 +99,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误; 
             }
 
-            return returnObj;
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<LIPS>>>(returnObj);
+            HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
         }
 
 
@@ -105,7 +110,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="slikp">交货申请Jason对象</param>
         [HttpPost]
-        public ReturnBaseObject<EAGO.Models.LIKP> PostApplys(dynamic slikp)
+        public HttpResponseMessage PostApplys(dynamic slikp)
         {
             EAGO.Models.LIKP likp = new EAGO.Models.LIKP();
             likp.LIPS = new List<LIPS>();
@@ -117,8 +122,7 @@ namespace EAGO.WebApi.EAGO_Controllers
             likp.ZZCHHAO = slikp["ZZCHHAO"] ?? "";
             likp.SQR = slikp["SQR"] ?? "";
             likp.ADDRESS = slikp["ADDRESS"] ?? "";
-            likp.REMARK = slikp["REMARK"] ?? "";
-
+            likp.REMARK = slikp["REMARK"] ?? ""; 
 
             var record = slikp["LIPS"];
             foreach (var jp in record)
@@ -150,7 +154,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
 
-            return returnObj;
+            string str = Jil.JSON.Serialize<ReturnBaseObject<EAGO.Models.LIKP>>(returnObj);
+            HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
 
         }
 
@@ -159,7 +165,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="ZZVBELN">交货申请单号</param>
         [HttpGet]
-        public ReturnBaseObject<string> SendSAP(string ZZVBELN)
+        public HttpResponseMessage SendSAP(string ZZVBELN)
         {
             ReturnBaseObject<string> returnObj = new ReturnBaseObject<string>() { ReturnObject = "" };
             try
@@ -177,7 +183,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
 
-            return returnObj; 
+            string str = Jil.JSON.Serialize<ReturnBaseObject<string>>(returnObj);
+            HttpResponseMessage resultmsg = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return resultmsg;
         }
 
 
@@ -186,7 +194,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// </summary>
         /// <param name="ZZVBELN">交货申请单号</param>
         [HttpGet]
-        public ReturnBaseObject<string> Delete(string ZZVBELN)
+        public HttpResponseMessage   Delete(string ZZVBELN)
         {
             ReturnBaseObject<string> returnObj = new ReturnBaseObject<string>() { ReturnObject = "" };
             try
@@ -204,7 +212,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
             }
 
-            return returnObj;  
+            string str = Jil.JSON.Serialize<ReturnBaseObject<string>>(returnObj);
+            HttpResponseMessage resultmsg = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return resultmsg;
         } 
          
 

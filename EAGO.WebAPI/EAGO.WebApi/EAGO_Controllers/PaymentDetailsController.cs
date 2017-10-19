@@ -41,7 +41,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// <param name="IBEGIN">开始日期</param>
         /// <param name="IEND">结束日期</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<PaymentDetail>> GetAllPayment(string ZKUNNR, string IBEGIN, string IEND) //ReturnBaseObject<IEnumerable<PaymentDetail>>
+        public HttpResponseMessage GetAllPayment(string ZKUNNR, string IBEGIN, string IEND) //ReturnBaseObject<IEnumerable<PaymentDetail>>
         {
             ReturnBaseObject<IEnumerable<PaymentDetail>> returnObj = new ReturnBaseObject<IEnumerable<PaymentDetail>>() { ReturnObject = new List<PaymentDetail>() };
             try
@@ -63,7 +63,10 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
                 //return returnObj;
             }
-            return returnObj;
+
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<PaymentDetail>>>(returnObj);
+            HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
         }
 
         //protected virtual void JsonpCallback(string json)

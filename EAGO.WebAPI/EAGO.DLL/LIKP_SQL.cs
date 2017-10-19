@@ -340,7 +340,14 @@ namespace EAGO.DLL
                     likp.VKORG = row["VKORG"].ToString();
                     likp.WADAT = row["WADAT"].ToString();
                     //likp.KUNNR = row["KUNNR"].ToString();
-                    likp.TOTAL = decimal.Parse( row["TOTAL"].ToString());
+                    if (string.IsNullOrEmpty(row["TOTAL"].ToString()))
+                    {
+                        likp.TOTAL = 0;
+                    }
+                    else
+                    {
+                        likp.TOTAL = decimal.Parse(row["TOTAL"].ToString());
+                    }
                     likp.ZZCHHAO = row["ZZCHHAO"].ToString();
                     likp.SQR = row["SQR"].ToString();
                     likp.SENDFLAG = row["SENDFLAG"].ToString();

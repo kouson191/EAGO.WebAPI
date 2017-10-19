@@ -33,9 +33,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         public OrderController()
         { 
             Log = new Log.Txt.TxtLog();
-        }
-
-
+        } 
 
         /// <summary>
         /// 获取销售订单列表
@@ -45,7 +43,7 @@ namespace EAGO.WebApi.EAGO_Controllers
         /// <param name="IBEGIN">开始日期</param>
         /// <param name="IEND">结束日期</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<LIKP>> GetAllOrderHead(string IKUNNR, string IVBELN, string IBEGIN, string IEND)
+        public HttpResponseMessage GetAllOrderHead(string IKUNNR, string IVBELN, string IBEGIN, string IEND)
         {
             ReturnBaseObject<IEnumerable<LIKP>> returnObj = new ReturnBaseObject<IEnumerable<LIKP>>() { ReturnObject = new List<LIKP>() };
             try
@@ -67,51 +65,19 @@ namespace EAGO.WebApi.EAGO_Controllers
             finally
             {
 
-            }
+            } 
 
-            return returnObj;
-        }
-
-        ///// <summary>
-        ///// 获取销售订单列表
-        ///// </summary>
-        ///// <param name="IKUNNR">客户编号</param>
-        ///// <param name="IVBELN">订单号</param>
-        ///// <param name="IBEGIN">开始日期</param>
-        ///// <param name="IEND">结束日期</param>
-        //[HttpGet]
-        //public void GetAllOrderHead(string IKUNNR, string IVBELN, string IBEGIN, string IEND)
-        //{
-        //    ReturnBaseObject<IEnumerable<LIKP>> returnObj = new ReturnBaseObject<IEnumerable<LIKP>>() { ReturnObject = new List<LIKP>() };
-        //    try
-        //    {
-        //        DataTable dt = orders.GetLIKP(IKUNNR, IVBELN, IBEGIN, IEND);
-
-        //        likp = DataTableToList.ConvertTo<LIKP>(dt);
-        //        var list = likp;
-        //        returnObj.IsError = false;
-        //        returnObj.ReturnObject = list;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.WriteLog(logClass + ex.Message.ToString() + "\r\n", true);
-        //        returnObj.IsError = true;
-        //        returnObj.Error.ErrorMsg = ex.Message.ToString();
-        //        returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误;
-        //    }
-        //    finally
-        //    {
-        //        JsonpCallback(JsonConvert.SerializeObject(returnObj));
-
-        //    }
-        //}
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<LIKP>>>(returnObj);
+            HttpResponseMessage resultmsg = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return resultmsg;
+        } 
 
         /// <summary>
         /// 获取销售订单明细
         /// </summary>
         /// <param name="IVBELN">订单号</param>
         [HttpGet]
-        public ReturnBaseObject<IEnumerable<LIPS>> GetOrderDtl(string IVBELN)
+        public HttpResponseMessage GetOrderDtl(string IVBELN)
         {
             ReturnBaseObject<IEnumerable<LIPS>> returnObj = new ReturnBaseObject<IEnumerable<LIPS>>() { ReturnObject = new List<LIPS>() };
             try
@@ -130,18 +96,9 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.Error.ErrorCode = Error.EnumErrorCode.未知错误; 
             }
 
-            return returnObj;
-        }
-         
-        //protected virtual void JsonpCallback(string json)
-        //{
-        //    HttpResponse Response = HttpContext.Current.Response;
-        //    string callback = HttpContext.Current.Request["callback"];
-
-        //    //如果callback是空, 就是普通的json, 否则就是jsonp
-        //    Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
-        //    Response.End();
-        //}
-         
+            string str = Jil.JSON.Serialize<ReturnBaseObject<IEnumerable<LIPS>>>(returnObj);
+            HttpResponseMessage resultmsg = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return resultmsg;
+        } 
     }
 }

@@ -12,6 +12,7 @@ using System.Web;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Web.Security;
+using System.Net.Http;
 
 namespace EAGO.WebApi.EAGO_Controllers
 {
@@ -66,7 +67,7 @@ namespace EAGO.WebApi.EAGO_Controllers
 
 
         [HttpGet]
-        public ReturnBaseObject<UserInfo> Login(string strUser, string strPwd)
+        public HttpResponseMessage Login(string strUser, string strPwd)
         {
             ReturnBaseObject<UserInfo> returnObj = new ReturnBaseObject<UserInfo>() { ReturnObject = new UserInfo() };
             if (!ValidateUser(strUser, strPwd))
@@ -91,20 +92,22 @@ namespace EAGO.WebApi.EAGO_Controllers
                 returnObj.ReturnObject = oUser;
             }
 
-            return returnObj;
+            string str = Jil.JSON.Serialize<ReturnBaseObject<UserInfo>>(returnObj);
+            HttpResponseMessage result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
         }
 
 
 
-        protected virtual void JsonpCallback(string json)
-        {
-            HttpResponse Response = HttpContext.Current.Response;
-            string callback = HttpContext.Current.Request["callback"];
+        //protected virtual void JsonpCallback(string json)
+        //{
+        //    HttpResponse Response = HttpContext.Current.Response;
+        //    string callback = HttpContext.Current.Request["callback"];
 
-            //如果callback是空, 就是普通的json, 否则就是jsonp
-            Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
-            Response.End();
-        }
+        //    //如果callback是空, 就是普通的json, 否则就是jsonp
+        //    Response.Write(callback == null ? json : string.Format("{0}({1})", callback, json));
+        //    Response.End();
+        //}
 
         //校验用户名密码（正式环境中应该是数据库校验）
         private bool ValidateUser(string strUser, string strPwd)
